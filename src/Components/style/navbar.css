@@ -6,12 +6,10 @@ nav{
   padding: 20px;
   border-bottom: 1px solid black;
 }
-nav .profile-icon{
+nav .profile-icon a{
   display: flex;
   align-items: center;
   gap: 10px;
-}
-nav .profile-icon a{
   text-decoration: none;
   color: black;
 }

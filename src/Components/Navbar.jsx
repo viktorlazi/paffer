@@ -6,8 +6,10 @@ function Navbar({address}) {
   return (
     <nav>
       <div className="profile-icon">
-        <Identicon string={address} />
-        <Link to={`./profile/${address}`}><h3>{address.substring(0, 12)}</h3></Link>
+        <Link to={`./profile/${address}`}>
+          <Identicon string={address} />
+          <h3>{address.substring(0, 12)}</h3>
+        </Link>
       </div>
       <div className="search-bar">
         <input type="text" placeholder="type address or handle..." />

@@ -1,9 +1,11 @@
 import Navbar from "../../Components/Navbar";
+import PublishPaff from './Components/PublishPaff';
 
 function Home() {
   return (
-    <div class="home">
+    <div className="home">
       <Navbar address="0x0aslkdjaslkdjkhkjhqwejl" />
+      <PublishPaff address="0x0aslkdjaslkdjkhkjhqwejl" publishPaff={()=>{}} />
     </div>
   )
 }

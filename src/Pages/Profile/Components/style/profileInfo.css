@@ -1,0 +1,15 @@
+.profileInfo{
+  display:flex;
+  margin-top: 20px;
+  justify-content: center;
+}
+.profileInfo h2 canvas{
+  height: 40px !important;
+  width: 40px !important;
+  border-radius: 50%;
+}
+.profileInfo h2{
+  display:flex;
+  align-items: center;
+  gap:5px;
+}

@@ -1,5 +1,5 @@
-import Feed from "../../Components/Feed";
-import Navbar from "../../Components/Navbar";
+import Feed from "../Profile/Components/Feed";
+import Navbar from "../Profile/Components/Navbar";
 import PublishPaff from './Components/PublishPaff';
 
 function Home() {

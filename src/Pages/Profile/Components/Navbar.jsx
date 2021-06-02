@@ -6,9 +6,9 @@ function Navbar({address}) {
   return (
     <nav>
       <div className="profile-icon">
-        <Link to={`./profile/${address}`}>
+        <Link to={`../profile/${address}`}>
           <Identicon string={address} />
-          <h3>{address.substring(0, 12)}</h3>
+          <h3>{address.substring(0, 10)}...</h3>
         </Link>
       </div>
       <div className="search-bar">

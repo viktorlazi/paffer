@@ -1,6 +1,6 @@
 import './style/publishPaff.css';
 
-function PublishPaff({address, publishPaff}) {
+function PublishPaff({publishPaff}) {
   return (
     <div className="publishPaff">
       <input type="text" placeholder="Publish a Paff"/>

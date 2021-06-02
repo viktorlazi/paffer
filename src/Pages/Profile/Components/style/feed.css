@@ -31,14 +31,10 @@
   justify-content:left;
   gap:15px;
 }
-.feed .feed-post .post-info a{
+.feed .feed-post .post-info .paff-amount{
   max-width: 80px;
   overflow:hidden;
-  color: var(--color-1);
   cursor: pointer;
-}
-.feed .feed-post .post-info .paff-amount{
-  color: var(--color-2);
 }
 .feed .feed-post .post-info label{
   font-weight: 100;

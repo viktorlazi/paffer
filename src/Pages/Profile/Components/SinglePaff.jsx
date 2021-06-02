@@ -12,7 +12,7 @@ function SinglePaff({props}) {
       <div>
         <p className="content">{props.content}</p>
         <div className="post-info">
-          <a className="paff-amount">{props.tipAmount}PAffs</a>
+          <label className="paff-amount">{props.tipAmount}PAffs</label>
           <label className="date">on {getDateString(props.date)}</label>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import Feed from "./Components/Feed";
-import Navbar from "./Components/Navbar";
+import Navbar from "../../Components/Navbar/Navbar";
 import ProfileInfo from './Components/ProfileInfo';
 import PublishPaff from './Components/PublishPaff';
 import {useParams} from 'react-router-dom';

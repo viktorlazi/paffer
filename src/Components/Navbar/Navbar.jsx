@@ -1,7 +1,9 @@
 import './style/navbar.css';
+import {observer} from 'mobx-react';
 import Login from './Components/Login';
 import LoggedIn from './Components/LoggedIn';
 import SearchBar from './Components/SearchBar';
+import SearchBarStore from './Stores/SearchBarStore';
 
 function Navbar({address}) {
   return (
@@ -11,8 +13,8 @@ function Navbar({address}) {
         <LoggedIn address={address} />
         :<Login />        
       }
-      <SearchBar />
+      <SearchBar store={new SearchBarStore()} />
     </nav>
   )
 }
-export default Navbar;
+export default observer(Navbar);

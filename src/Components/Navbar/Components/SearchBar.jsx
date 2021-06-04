@@ -1,8 +1,14 @@
-function SearchBar() {
+import {observer} from 'mobx-react';
+
+function SearchBar({store}) {
   return (
     <div className="search-bar">
-      <input type="text" placeholder="type address or handle..." />
+      <input 
+        type="text" 
+        value={store.getContent()}
+        placeholder="type address or handle..." 
+        onChange={e=>store.setContent(e.target.value)}/>
     </div>
   )
 }
-export default SearchBar;
+export default observer(SearchBar);

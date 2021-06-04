@@ -1,4 +1,4 @@
-import Feed from "./Components/Feed";
+import Feed from "../../Components/Feed/Feed";
 import Navbar from "../../Components/Navbar/Navbar";
 import ProfileInfo from './Components/ProfileInfo';
 import PublishPaff from './Components/PublishPaff';

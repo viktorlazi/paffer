@@ -1,17 +1,17 @@
 import './style/navbar.css';
 import {observer} from 'mobx-react';
-import Login from './Components/Login';
+import NoMetamask from './Components/NoMetamask';
 import LoggedIn from './Components/LoggedIn';
 import SearchBar from './Components/SearchBar';
 import SearchBarStore from './Stores/SearchBarStore';
 
-function Navbar({address}) {
+function Navbar({userAddress}) {
   return (
     <nav>
       {
-        address?
-        <LoggedIn address={address} />
-        :<Login />        
+        userAddress?
+        <LoggedIn userAddress={userAddress} />
+        :<NoMetamask />        
       }
       <SearchBar store={new SearchBarStore()} />
     </nav>

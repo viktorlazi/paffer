@@ -26,7 +26,6 @@ export default class BlockchainData{
     const web3 = window.web3;
     const accounts = await web3.eth.getAccounts();
     this.userAddress = accounts[0];
-    console.log(this.userAddress);
     /*
     const networkId = await web3.eth.net.getId()
     const networkData = Decentragram.networks[networkId]

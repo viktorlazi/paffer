@@ -7,7 +7,7 @@ function ProfileInfo({address}) {
       <h2>
         Posts from: &ensp;
         <Identicon string={address} />
-        {address}
+        {address.substring(0, 15)}
       </h2>
     </div>
   )

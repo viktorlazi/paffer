@@ -4,16 +4,14 @@ import ProfileInfo from './Components/ProfileInfo';
 import PublishPaff from './Components/PublishPaff';
 import {useParams} from 'react-router-dom';
 
-function Profile() {
+function Profile({userAddress}) {
   const address = useParams().address;
-  const myAddress = "0xsaslkdjaslkdjkhkjhqwejl";
   return <div className="profile">
-      <Navbar address="0xsaslkdjaslkdjkhkjhqwejl" />
-      <ProfileInfo address={address} />
+      <Navbar userAddress={userAddress} />
       {
-        myAddress===address?
+        userAddress===address?
         <PublishPaff publishPaff={()=>{}} />
-        :null
+        :<ProfileInfo address={address} />
       }
       <Feed>
         {[

@@ -15,7 +15,7 @@ function App() {
           <Landing userAddress={blockchainData.getUserAddress()}/>
         </Route>
         <Route path="/profile/:address" >
-          <Profile />
+          <Profile userAddress={blockchainData.getUserAddress()}/>
         </Route>
       </Router>
     </div>

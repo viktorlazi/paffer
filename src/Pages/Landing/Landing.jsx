@@ -1,5 +1,4 @@
 import Navbar from "../../Components/Navbar/Navbar";
-import {observer} from "mobx-react";
 
 function Landing({userAddress}) {
   return (
@@ -8,4 +7,4 @@ function Landing({userAddress}) {
     </div>
   )
 }
-export default observer(Landing);
+export default Landing;

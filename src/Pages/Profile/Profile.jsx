@@ -1,10 +1,11 @@
+import {observer} from 'mobx-react';
 import Feed from "../../Components/Feed/Feed";
 import Navbar from "../../Components/Navbar/Navbar";
 import ProfileInfo from './Components/ProfileInfo';
 import PublishPaff from './Components/PublishPaff';
 import {useParams} from 'react-router-dom';
 
-function Profile({userAddress}) {
+function Profile({userAddress, BlockchainExplorer}) {
   const address = useParams().address;
   return <div className="profile">
       <Navbar userAddress={userAddress} />
@@ -15,32 +16,9 @@ function Profile({userAddress}) {
       }
       <Feed>
         {[
-          {
-            author: 'viktor',
-            content: 'oeowqe',
-            tipAmount: '220',
-            date: new Date(1)
-          },
-          {
-            author: 'viktor',
-            content: 'sfldsf',
-            tipAmount: '220',
-            date: new Date(1)
-          },
-          {
-            author: 'viktor',
-            content: 'oeowqe',
-            tipAmount: '220',
-            date: new Date(1)
-          },
-          {
-            author: 'viktor',
-            content: 'oeowqe',
-            tipAmount: '220',
-            date: new Date(1)
-          }
+          ...BlockchainExplorer.getAuthorPosts('viktor')
         ]}
       </Feed>
     </div>
 }
-export default Profile;
+export default observer(Profile);

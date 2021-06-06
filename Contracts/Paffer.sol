@@ -6,7 +6,6 @@ contract Paffer{
   
   struct Paff{
     uint id;
-    string hash;
     string content;
     uint tipAmount;
     uint256 date;
@@ -16,7 +15,6 @@ contract Paffer{
 
   event PaffCreated(
     uint id,
-    string hash,
     string content,
     uint tipAmount,
     uint256 date,  
@@ -24,20 +22,18 @@ contract Paffer{
   );
   event PaffTipped(
     uint id,
-    string hash,
     string content,
     uint tipAmount,
     address payable author
   );
 
-  function uploadPaff(string memory _paffHash, string memory _content) public{
+  function uploadPaff(string memory _content) public{
     require(bytes(_content).length > 0);
-    require(bytes(_paffHash).length > 0);
     require(msg.sender != address(0x0));
 
     paffCount++;
-    paffs[paffCount] = Paff(paffCount, _paffHash, _content, 0, block.timestamp, msg.sender);
-    emit PaffCreated(paffCount, _paffHash, _content, 0, block.timestamp, msg.sender);
+    paffs[paffCount] = Paff(paffCount, _content, 0, block.timestamp, msg.sender);
+    emit PaffCreated(paffCount, _content, 0, block.timestamp, msg.sender);
   }
 
   function tipPaffOwner(uint _id) public payable{
@@ -49,7 +45,7 @@ contract Paffer{
     _paff.tipAmount = _paff.tipAmount + msg.value;    
     paffs[_id] = _paff;
     
-    emit PaffTipped(_id, _paff.hash, _paff.content, _paff.tipAmount, _author);
+    emit PaffTipped(_id, _paff.content, _paff.tipAmount, _author);
   }
 }
 

@@ -26,30 +26,5 @@ export default class BlockchainData{
     const web3 = window.web3;
     const accounts = await web3.eth.getAccounts();
     this.userAddress = accounts[0];
-    /*
-    const networkId = await web3.eth.net.getId()
-    const networkData = Decentragram.networks[networkId]
-    if(networkData){
-      const decentragram = web3.eth.Contract(Decentragram.abi, networkData.address)
-      this.setState({ decentragram })
-      const imagesCount = await decentragram.methods.imageCount().call()
-      this.setState({ imagesCount })
-
-      for(let i = 1; i <= imagesCount; i++){
-        const image = await decentragram.methods.images(i).call()
-        this.setState({
-          images: [...this.state.images, image]
-        })
-      }
-
-      this.setState({
-        images:this.state.images.sort((a,b) => b.tipAmount - a.tipAmount)
-      })
-
-      this.setState({ loading: false })
-    }else{
-      window.alert('decentragram not deployed to network')
-    }
-    */
   }
 }

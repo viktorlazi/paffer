@@ -6,12 +6,16 @@ import PublishPaff from './Components/PublishPaff';
 import {useParams} from 'react-router-dom';
 
 function Profile({userAddress, BlockchainExplorer}) {
+  
   const address = useParams().address;
   return <div className="profile">
       <Navbar userAddress={userAddress} />
       {
         userAddress===address?
-        <PublishPaff publishPaff={()=>{}} />
+        <PublishPaff publishPaff={()=>{
+          BlockchainExplorer.fetchPaffs();
+          //BlockchainExplorer.uploadPaff('alo', userAddress); 
+        }}/>
         :<ProfileInfo address={address} />
       }
       <Feed>

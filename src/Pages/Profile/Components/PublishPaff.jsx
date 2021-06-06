@@ -4,7 +4,7 @@ function PublishPaff({publishPaff}) {
   return (
     <div className="publishPaff">
       <input type="text" placeholder="Publish a Paff"/>
-      <button>publish</button>
+      <button onClick={publishPaff}>publish</button>
     </div>
   )
 }

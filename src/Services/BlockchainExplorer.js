@@ -1,6 +1,9 @@
 import {makeAutoObservable} from 'mobx';
+import Web3 from 'web3';
+import Paffer from '../abis/Paffer.json';
 
 export default class BlockchainExplorer{
+  networkData;
   posts = [
     {
       id: 0,
@@ -33,6 +36,8 @@ export default class BlockchainExplorer{
   ];
   constructor(){
     makeAutoObservable(this);
+    this.loadWeb3();
+    this.getNetworkData();
   }
   getPostById(id){
     return this.posts.find(e=>e.id===id);
@@ -40,5 +45,30 @@ export default class BlockchainExplorer{
   getAuthorPosts(author){
     return this.posts.filter(e=>e.author===author);
   }
-
+  async loadWeb3(){
+    if(window.ethereum){
+      window.web3 = new Web3(window.ethereum);
+      await window.ethereum.enable();
+    }else if(window.web3){
+      window.web3 = new Web3(window.web3.currentProvider);
+    }else{
+      console.log('Non-ethereum browser detected. Condider trying MetaMask.')
+    }
+  }
+  async getNetworkData(){
+    const networkId = await window.web3.eth.net.getId();
+    this.networkData = Paffer.networks[networkId];
+  }
+  methods(){
+    if(this.networkData){
+      const paffer = new window.web3.eth.Contract(Paffer.abi, this.networkData.address)
+      return paffer.methods;
+    }
+  }
+  uploadPaff(content, sender){
+    this.methods().uploadPaff(content).send({from:sender});
+  }
+  async fetchPaffs(){
+    console.log(await this.methods().paffs(1).call());
+  }
 }

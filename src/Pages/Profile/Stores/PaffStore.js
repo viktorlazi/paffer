@@ -34,7 +34,7 @@ export default class PaffStore{
       });
     })
     .catch(()=>{
-      this.publishPaffStore.errorMessage = 'rejected uploading to blockchain';
+      this.publishPaffStore.errorMessage = 'rejected';
     })
   }
 

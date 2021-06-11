@@ -1,19 +1,19 @@
-function SinglePaff({props}) {  
+function SinglePaff({content, tipAmount, date}) {  
   const getDateString = (timestamp) =>{
-    const date = new Date(timestamp*1000)
-    const day = date.getDate()
-    const month = date.getMonth()+1
-    const year = date.getFullYear()
-    const fullDate = day+'.'+month+'.'+year+'.'
-    return fullDate
+    const date = new Date(timestamp*1000);
+    const day = date.getDate();
+    const month = date.getMonth()+1;
+    const year = date.getFullYear();
+    const fullDate = day+'.'+month+'.'+year+'.';
+    return fullDate;
   }
   return (
     <div className="feed-post">
       <div>
-        <p className="content">{props.content}</p>
+        <p className="content">{content}</p>
         <div className="post-info">
-          <label className="paff-amount">{props.tipAmount}PAffs</label>
-          <label className="date">on {getDateString(props.date)}</label>
+          <label className="paff-amount">{tipAmount} PAffs</label>
+          <label className="date">on {getDateString(date)}</label>
         </div>
       </div>
     </div>

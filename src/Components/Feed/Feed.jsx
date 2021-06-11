@@ -6,7 +6,7 @@ function Feed(props) {
       {
         props.children.length ?
         props.children.map((e)=>{
-          return <SinglePaff key={e.id} props={e} />
+          return <SinglePaff content={e.content} date={e.date} tipAmount={e.tipAmount} />
         })
         :
         <p>no paffs to display</p>

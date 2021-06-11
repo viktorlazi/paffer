@@ -4,46 +4,11 @@ import Paffer from '../abis/Paffer.json';
 
 export default class BlockchainExplorer{
   networkData;
-  posts = [
-    {
-      id: 0,
-      author: 'viktor',
-      content: 'prvi',
-      tipAmount: '1000',
-      date: new Date(1)
-    },
-    {
-      id: 1,
-      author: 'viktor',
-      content: 'drugi',
-      tipAmount: '30',
-      date: new Date(1)
-    },
-    {
-      id: 2,
-      author: 'jozo',
-      content: 'alo ja san jozo',
-      tipAmount: '220',
-      date: new Date(1)
-    },
-    {
-      id:3,
-      author: 'jozo',
-      content: 'sta ima',
-      tipAmount: '12',
-      date: new Date(1)
-    }
-  ];
+  paffs;
   constructor(){
     makeAutoObservable(this);
     this.loadWeb3();
     this.getNetworkData();
-  }
-  getPostById(id){
-    return this.posts.find(e=>e.id===id);
-  }
-  getAuthorPosts(author){
-    return this.posts.filter(e=>e.author===author);
   }
   async loadWeb3(){
     if(window.ethereum){
@@ -68,7 +33,29 @@ export default class BlockchainExplorer{
   uploadPaff(content, sender){
     this.methods().uploadPaff(content).send({from:sender});
   }
-  async fetchPaffs(){
-    console.log(await this.methods().paffs(1).call());
+  async fetchPaffById(id){
+    console.log(await this.methods().paffs(id).call());
+  }
+  async fetchAllPaffs(){
+    if(!this.methods()){
+      return [];
+    }
+    const paffCount = await this.methods().paffCount().call();
+    let paffs = [];
+    if(!paffCount){
+      return [];
+    }
+    for (let i = 0; i < paffCount; i++) {
+      paffs.push(await this.methods().paffs(paffCount).call());
+    }
+    this.paffs = paffs;
+    return paffs;
+  }
+  async fetchAuthorPaffs(author){    
+    this.paffs = await this.fetchAllPaffs();
+    if(!this.paffs){
+      return [];
+    }
+    return this.paffs.filter(e=>e.author===author);
   }
 }

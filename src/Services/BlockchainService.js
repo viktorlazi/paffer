@@ -38,12 +38,15 @@ export default class BlockchainService{
   }
   uploadPaff(content, sender){
     return new Promise((res, rej)=>{
-      this.getMethods().uploadPaff(content).send({from:sender})
-      .then(()=>{
-        res(true);
-      })
-      .catch(()=>{
-        rej(false);
+      this.getMethods()
+      .then(methods=>{
+        methods.uploadPaff(content).send({from:sender})
+        .then(()=>{
+          res(true);
+        })
+        .catch(()=>{
+          rej(false);
+        });
       });
     });
   }

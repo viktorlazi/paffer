@@ -24,15 +24,21 @@ export default class BlockchainService{
     const networkId = await window.web3.eth.net.getId();
     this.networkData = Paffer.networks[networkId];
   }
-  methods(){
-    if(this.networkData){
-      const paffer = new window.web3.eth.Contract(Paffer.abi, this.networkData.address)
-      return paffer.methods;
-    }
+  getMethods(){
+    return new Promise((res, rej)=>{
+      if(this.networkData){
+        const paffer = new window.web3.eth.Contract(Paffer.abi, this.networkData.address)
+        res(paffer.methods);
+      }
+      setInterval(()=>{
+        const paffer = new window.web3.eth.Contract(Paffer.abi, this.networkData.address)
+        res(paffer.methods);
+      }, 1000);
+    });
   }
   uploadPaff(content, sender){
     return new Promise((res, rej)=>{
-      this.methods().uploadPaff(content).send({from:sender})
+      this.getMethods().uploadPaff(content).send({from:sender})
       .then(()=>{
         res(true);
       })
@@ -44,20 +50,23 @@ export default class BlockchainService{
   async fetchPaffById(id){
     console.log(await this.methods().paffs(id).call());
   }
-  async fetchAllPaffs(){
-    if(!this.methods()){
-      return [];
-    }
-    const paffCount = await this.methods().paffCount().call();
-    let paffs = [];
-    if(!paffCount){
-      return [];
-    }
-    for (let i = 0; i < paffCount; i++) {
-      paffs.push(await this.methods().paffs(paffCount).call());
-    }
-    this.paffs = paffs;
-    return paffs;
+  fetchAllPaffs(){
+    return new Promise((res, rej)=>{
+      let paffs = [];
+      this.getMethods()
+      .then(async resp=>{
+        const methods = resp;
+        const paffCount = await methods.paffCount().call();
+        if(!paffCount){
+          rej([])
+        }
+        for (let i = 0; i < paffCount; i++) {
+          paffs.push(await methods.paffs(paffCount).call());
+        }
+        this.paffs = paffs;
+        res(paffs);
+      })
+    });
   }
   async fetchAuthorPaffs(author){    
     this.paffs = await this.fetchAllPaffs();

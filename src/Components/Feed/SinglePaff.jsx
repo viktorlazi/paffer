@@ -1,6 +1,6 @@
 function SinglePaff({content, tipAmount, date}) {  
   const getDateString = (timestamp) =>{
-    const date = new Date(timestamp); // ili timestamp*1000?
+    const date = new Date(parseInt(timestamp*1000)); // ili timestamp*1000?
     const day = date.getDate();
     const month = date.getMonth()+1;
     const year = date.getFullYear();

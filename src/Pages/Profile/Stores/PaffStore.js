@@ -11,12 +11,19 @@ export default class PaffStore{
   constructor(address){
     this.userAddress = address;
     makeAutoObservable(this);
+    this.fetchPaffs();
   }
   getPaffs(){
     return this.paffs;
   }
+  fetchPaffs(){
+    this.service.fetchAllPaffs()
+    .then((res)=>{
+      this.paffs = res;
+    });
+  }
   pushPaff(content){
-    const date = Date.now();
+    const date = Date.now()/1000;
     this.service.uploadPaff(content, this.userAddress)
     .then(()=>{
       this.paffs.unshift({

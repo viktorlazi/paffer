@@ -1,8 +1,11 @@
 import {makeAutoObservable} from 'mobx';
+import PublishPaffStore from '../Components/Stores/PublishPaffStore';
 
 export default class PaffStore{
   userAddress = '';
   paffs = [];
+  publishPaffStore = new PublishPaffStore((x)=>this.pushPaff(x));
+  
   constructor(address){
     this.userAddress = address;
     makeAutoObservable(this);

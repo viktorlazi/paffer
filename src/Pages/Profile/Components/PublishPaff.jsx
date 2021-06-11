@@ -1,11 +1,15 @@
 import './style/publishPaff.css';
+import {observer} from 'mobx-react';
 
-function PublishPaff({publishPaff}) {
+function PublishPaff({store}) {
   return (
-    <div className="publishPaff">
-      <input type="text" placeholder="Publish a Paff"/>
-      <button onClick={publishPaff}>publish</button>
+    <div className="publish">
+      <div className="publishPaff">
+        <input value={store.content} onChange={e=>{store.setContent(e.target.value)}} type="text" placeholder="Publish a Paff"/>
+        <button onClick={()=>store.publish(store.value)}>publish</button>
+      </div>
+      <p>{store.errorMessage}</p>
     </div>
   )
 }
-export default PublishPaff;
+export default observer(PublishPaff);

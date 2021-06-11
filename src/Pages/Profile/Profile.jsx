@@ -11,15 +11,14 @@ let paffStore = new PaffStore('');
 function Profile({userAddress}) {
   const address = useParams().address;
   if(paffStore.userAddress !== address){
+    paffStore = null;
     paffStore = new PaffStore(address);
   }
   return <div className="profile">
       <Navbar userAddress={userAddress} />
       {
         userAddress===address?
-        <PublishPaff publishPaff={()=>{
-          paffStore.pushPaff('alo'); 
-        }}/>
+        <PublishPaff store={paffStore.publishPaffStore}/>
         :<ProfileInfo address={address} />
       }
       <Feed>

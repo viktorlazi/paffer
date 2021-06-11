@@ -7,6 +7,11 @@ import BlockchainService from './Services/BlockchainService';
 
 import {observer} from "mobx-react";
 
+if(!window.web3){
+  alert("This app requires blockchain browser to run. Consider using metamask :)")
+  window.location.href = "https://metamask.io/download";
+}
+
 const blockchainData = new BlockchainData();
 
 function App() {

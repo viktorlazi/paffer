@@ -3,7 +3,7 @@ import {Route, BrowserRouter as Router} from 'react-router-dom';
 import Profile from './Pages/Profile/Profile';
 import Landing from './Pages/Landing/Landing';
 import BlockchainData from './Stores/BlockchainData';
-import BlockchainExplorer from './Services/BlockchainExplorer';
+import BlockchainService from './Services/BlockchainService';
 
 import {observer} from "mobx-react";
 
@@ -16,13 +16,13 @@ function App() {
         <Route exact path="/">
           <Landing 
             userAddress={blockchainData.getUserAddress()}
-            BlockchainExplorer={new BlockchainExplorer()}            
+            BlockchainService={new BlockchainService()}            
           />
         </Route>
         <Route path="/profile/:address">
           <Profile 
             userAddress={blockchainData.getUserAddress()}
-            BlockchainExplorer={new BlockchainExplorer()} 
+            BlockchainService={new BlockchainService()} 
           />
         </Route>
       </Router>

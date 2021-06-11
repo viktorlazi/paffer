@@ -2,7 +2,7 @@ import {makeAutoObservable} from 'mobx';
 import Web3 from 'web3';
 import Paffer from '../abis/Paffer.json';
 
-export default class BlockchainExplorer{
+export default class BlockchainService{
   networkData;
   paffs;
   constructor(){
@@ -31,7 +31,15 @@ export default class BlockchainExplorer{
     }
   }
   uploadPaff(content, sender){
-    this.methods().uploadPaff(content).send({from:sender});
+    return new Promise((res, rej)=>{
+      this.methods().uploadPaff(content).send({from:sender})
+      .then(()=>{
+        res(true);
+      })
+      .catch(()=>{
+        rej(false);
+      });
+    });
   }
   async fetchPaffById(id){
     console.log(await this.methods().paffs(id).call());

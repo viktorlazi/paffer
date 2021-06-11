@@ -1,9 +1,9 @@
 import {makeAutoObservable} from 'mobx';
-import BlockchainExplorer from '../../../Services/BlockchainExplorer';
+import BlockchainService from '../../../Services/BlockchainService';
 
 export default class SearchBarStore{
   content = '';
-  service = new BlockchainExplorer();  
+  service = new BlockchainService();  
   constructor(){
     makeAutoObservable(this);
   }

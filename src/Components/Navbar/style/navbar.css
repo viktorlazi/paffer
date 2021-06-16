@@ -20,6 +20,7 @@ nav .profile-info canvas{
 }
 nav .search-bar input{
   padding: 5px;
+  cursor: pointer;
   outline: none;
   border: none;
   border-bottom: 1px solid gray;

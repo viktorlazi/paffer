@@ -13,7 +13,8 @@ export default class SearchBarStore{
   setContent(_content){
     this.content = _content;
   }
-  fetchResults(){
-    return this.service.findAddress(this.content);
+  submit(){
+    window.location.href = ("http://localhost:3000/profile/" + this.content);
   }
+
 }

@@ -2,8 +2,8 @@ import {makeAutoObservable} from 'mobx';
 import PublishPaffStore from '../Components/Stores/PublishPaffStore';
 import BlockchainService from '../../../Services/BlockchainService';
 
-export default class PaffStore{
-  userAddress = '';
+export default class ProfileStore{
+  address = '';
   paffs = [];
   publishPaffStore = new PublishPaffStore((x)=>this.pushPaff(x));
   service = new BlockchainService();
@@ -11,7 +11,9 @@ export default class PaffStore{
   constructor(address){
     this.userAddress = address;
     makeAutoObservable(this);
-    this.fetchPaffs();
+    if(window.web3 || window.ethereum){
+      //this.fetchPaffs();
+    }
   }
   getPaffs(){
     return this.paffs;

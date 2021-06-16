@@ -4,26 +4,26 @@ import Navbar from "../../Components/Navbar/Navbar";
 import ProfileInfo from './Components/ProfileInfo';
 import PublishPaff from './Components/PublishPaff';
 import {useParams} from 'react-router-dom';
-import PaffStore from './Stores/PaffStore';
+import ProfileStore from './Stores/ProfileStore';
 
-let paffStore = new PaffStore('');
+let profileStore = new ProfileStore('0x');
 
-function Profile({userAddress}) {
+function Profile() {
   const address = useParams().address;
-  if(paffStore.userAddress !== address){
-    paffStore = null;
-    paffStore = new PaffStore(address);
+  if(profileStore.userAddress !== address){
+    profileStore = null;
+    profileStore = new ProfileStore(address);
   }
   return <div className="profile">
-      <Navbar userAddress={userAddress} />
+      <Navbar userAddress={profileStore.service.userAddress} />
       {
-        userAddress===address?
-        <PublishPaff store={paffStore.publishPaffStore}/>
+        profileStore.service.userAddress===address?
+        <PublishPaff store={profileStore.publishPaffStore}/>
         :<ProfileInfo address={address} />
       }
       <Feed>
         {[
-          ...paffStore.getPaffs()
+          ...profileStore.getPaffs()
         ]}
       </Feed>
     </div>

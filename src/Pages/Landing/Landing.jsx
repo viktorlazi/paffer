@@ -1,10 +1,14 @@
 import Navbar from "../../Components/Navbar/Navbar";
+import LandingStore from './Stores/LandingStore';
+import {observer} from 'mobx-react';
 
-function Landing({userAddress}) {
+const store = new LandingStore();
+
+function Landing() {
   return (
     <div className="landing">
-      <Navbar userAddress={userAddress} />
+      <Navbar userAddress={store.service.userAddress} />
     </div>
   )
 }
-export default Landing;
+export default observer(Landing);

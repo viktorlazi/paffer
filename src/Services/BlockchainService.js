@@ -1,39 +1,59 @@
-import {makeAutoObservable} from 'mobx';
+import {makeAutoObservable, runInAction} from 'mobx';
 import Web3 from 'web3';
 import Paffer from '../abis/Paffer.json';
 
 export default class BlockchainService{
-  networkData;
-  paffs;
+  networkData = null;
+  userAddress = '';
+  paffs = [];
   constructor(){
     makeAutoObservable(this);
-    this.loadWeb3();
-    this.getNetworkData();
+    if(window.web3 || window.ethereum){
+      this.loadWeb3();
+      this.getNetworkData();
+      this.loadBlockchainData();
+    }
   }
   async loadWeb3(){
     if(window.ethereum){
       window.web3 = new Web3(window.ethereum);
-      await window.ethereum.enable();
+      window.ethereum.enable();
     }else if(window.web3){
       window.web3 = new Web3(window.web3.currentProvider);
     }else{
       console.log('Non-ethereum browser detected. Condider trying MetaMask.')
     }
   }
-  async getNetworkData(){
-    const networkId = await window.web3.eth.net.getId();
-    this.networkData = Paffer.networks[networkId];
+  getNetworkData(){
+    return new Promise((res,rej)=>{
+      window.web3.eth.net.getId()
+      .then((id)=>{
+        res(Paffer.networks[id])
+      })
+    });
+  }
+  async loadBlockchainData(){
+    const accounts = await window.web3.eth.getAccounts();
+    runInAction(()=>{
+      this.userAddress = accounts[0];
+    });
   }
   getMethods(){
-    return new Promise((res, rej)=>{
+    return new Promise(async(res, rej)=>{
       if(this.networkData){
-        const paffer = new window.web3.eth.Contract(Paffer.abi, this.networkData.address)
+        const paffer = await new window.web3.eth.Contract(Paffer.abi, this.networkData.address)
         res(paffer.methods);
       }
-      setInterval(()=>{
-        const paffer = new window.web3.eth.Contract(Paffer.abi, this.networkData.address)
+      this.getNetworkData()
+      .then((networkData)=>{
+        const paffer = new window.web3.eth.Contract(Paffer.abi, networkData.address)
         res(paffer.methods);
-      }, 1000);
+      });
+      /*
+      setInterval(()=>{
+        const paffer = await new window.web3.eth.Contract(Paffer.abi, await this.getNetworkData().address)
+        res(paffer.methods);
+      }, 1000);*/
     });
   }
   uploadPaff(content, sender){

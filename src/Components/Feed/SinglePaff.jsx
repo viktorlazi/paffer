@@ -1,4 +1,6 @@
-function SinglePaff({content, tipAmount, date}) {  
+import Identicon from 'react-identicons';
+
+function SinglePaff({isUserFeed, content, tipAmount, date, author}) {  
   const getDateString = (timestamp) =>{
     const date = new Date(parseInt(timestamp*1000)); // ili timestamp*1000?
     const day = date.getDate();
@@ -9,6 +11,15 @@ function SinglePaff({content, tipAmount, date}) {
   }
   return (
     <div className="feed-post">
+      {
+        !isUserFeed?
+        <div className="icon">
+          <a href={"http://localhost:3000/profile/" + author}>
+            <Identicon string={author} />
+          </a>
+        </div>
+        :null
+      }
       <div>
         <p className="content">{content}</p>
         <div className="post-info">

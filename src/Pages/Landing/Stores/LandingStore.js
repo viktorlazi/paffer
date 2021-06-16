@@ -9,7 +9,16 @@ export default class LandingStore{
     this.userAddress = address;
     makeAutoObservable(this);
     if(window.web3 || window.ethereum){
+      this.fetchPaffs();
     }
   }
-
+  getPaffs(){
+    return this.paffs;
+  }
+  fetchPaffs(){
+    this.service.fetchAllPaffs()
+    .then((res)=>{
+      this.paffs = res;
+    });
+  }
 }

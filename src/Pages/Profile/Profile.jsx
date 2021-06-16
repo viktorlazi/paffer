@@ -21,7 +21,7 @@ function Profile() {
         <PublishPaff store={profileStore.publishPaffStore}/>
         :<ProfileInfo address={address} />
       }
-      <Feed>
+      <Feed isUserFeed={true}>
         {[
           ...profileStore.getPaffs()
         ]}

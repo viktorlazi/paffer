@@ -1,4 +1,4 @@
-import {makeAutoObservable, toJS} from 'mobx';
+import {makeAutoObservable} from 'mobx';
 import PublishPaffStore from '../Components/Stores/PublishPaffStore';
 import BlockchainService from '../../../Services/BlockchainService';
 
@@ -22,7 +22,6 @@ export default class ProfileStore{
     this.service.fetchAllPaffs()
     .then((res)=>{
       this.paffs = res.filter(e=>{return e.author===this.profileAddress});
-
     });
   }
   pushPaff(content){

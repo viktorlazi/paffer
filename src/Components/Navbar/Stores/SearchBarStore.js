@@ -13,7 +13,7 @@ export default class SearchBarStore{
   async setContent(input){
     this.content = input.value;
     const typedLength = this.content.length;
-    if(typedLength > 2){
+    if(typedLength > 1){
       setTimeout(async()=>{
         if(typedLength === this.content.length){
           const profiles = await this.getProfileAddressesAsync();

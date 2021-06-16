@@ -1,8 +1,7 @@
 import {makeAutoObservable} from 'mobx';
 import BlockchainService from '../../../Services/BlockchainService';
 
-export default class ProfileStore{
-  address = '';
+export default class LandingStore{
   paffs = [];
   service = new BlockchainService();
   

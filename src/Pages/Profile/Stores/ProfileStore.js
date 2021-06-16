@@ -12,7 +12,7 @@ export default class ProfileStore{
     this.userAddress = address;
     makeAutoObservable(this);
     if(window.web3 || window.ethereum){
-      //this.fetchPaffs();
+      this.fetchPaffs();
     }
   }
   getPaffs(){

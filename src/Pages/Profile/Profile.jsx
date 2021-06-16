@@ -10,7 +10,7 @@ let profileStore = new ProfileStore('0x');
 
 function Profile() {
   const address = useParams().address;
-  if(profileStore.userAddress !== address){
+  if(profileStore.profileAddress !== address){
     profileStore = null;
     profileStore = new ProfileStore(address);
   }

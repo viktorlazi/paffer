@@ -20,7 +20,7 @@ export default class PublishPaffStore{
   }
   checkForErrors(){
     if(this.content.length <= 0 || !this.content.trim().length){
-      this.errorMessage = 'You can\'t publish an emtpy paff!';
+      this.errorMessage = 'You can\'t publish an empty paff!';
       return false;
     }
     if(this.content.length > 25){

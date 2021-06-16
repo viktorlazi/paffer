@@ -81,10 +81,12 @@ export default class BlockchainService{
         const methods = resp;
         const paffCount = await methods.paffCount().call();
         if(!paffCount){
-          rej([])
+          rej([]);
         }
-        for (let i = 0; i < paffCount; i++) {
-          paffs.push(await methods.paffs(paffCount).call());
+        for (let i = 0; i < paffCount; i++){
+          const newPaff = await methods.paffs(i).call();
+          console.log(newPaff)
+          paffs.push(newPaff);
         }
         this.paffs = paffs;
         res(paffs);

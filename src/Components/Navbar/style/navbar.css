@@ -25,3 +25,13 @@ nav .search-bar input{
   border: none;
   border-bottom: 1px solid gray;
 }
+nav .search-bar .suggested-addresses{
+  display:flex;
+  gap:2px;
+  overflow: hidden;
+  width: 120%;
+}
+nav .search-bar .suggested-addresses a{
+  color: blue;
+  font-size: 13px;
+}

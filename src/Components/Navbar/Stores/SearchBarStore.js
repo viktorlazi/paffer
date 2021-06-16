@@ -4,6 +4,7 @@ import BlockchainService from '../../../Services/BlockchainService';
 export default class SearchBarStore{
   content = '';
   service = new BlockchainService();
+  profiles = [];
   constructor(){
     makeAutoObservable(this);
   }
@@ -20,6 +21,11 @@ export default class SearchBarStore{
           if(profiles.length){
             runInAction(()=>{
               this.content = profiles[0].author;
+              profiles.forEach(e => {
+                if(!this.profiles.includes(e.author)){
+                  this.profiles.push(e.author);
+                }
+              });
             });
             input.focus();
             input.setSelectionRange(typedLength, this.content.length);
@@ -28,8 +34,15 @@ export default class SearchBarStore{
       }, 400);
     }
   }
+  getProfiles(){
+    return this.profiles;
+  }
+  onClick(){
+    this.content = '0x';
+  }
   async getProfileAddressesAsync(){
     const allPaffs = await this.service.fetchAllPaffs();
+    console.log(allPaffs);
     const filteredAuthors = allPaffs.filter(e=>{return e.author.includes(this.content)});
     return filteredAuthors;
   }

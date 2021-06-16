@@ -15,6 +15,10 @@
   justify-content: left;
   padding: 10px;
 }
+.feed .feed-post .post-info a label{
+  cursor: pointer;
+  color:green;
+}
 .feed .feed-post > div{
   padding: 10px 20px;
   margin: 5px;

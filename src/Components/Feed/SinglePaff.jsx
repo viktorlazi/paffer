@@ -23,6 +23,13 @@ function SinglePaff({isUserFeed, content, tipAmount, date, author}) {
       <div>
         <p className="content">{content}</p>
         <div className="post-info">
+          {
+            !isUserFeed?
+            <a href={"http://localhost:3000/profile/" + author}>
+              <label className="autor-name">{author.slice(0,8)}</label>
+            </a>
+            :null
+          }
           <label className="paff-amount">{tipAmount} PAffs</label>
           <label className="date">on {getDateString(date)}</label>
         </div>

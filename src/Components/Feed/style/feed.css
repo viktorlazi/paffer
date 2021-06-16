@@ -22,8 +22,8 @@
 .feed .feed-post canvas{
   border-radius: 50%;
   aspect-ratio: 1;
-  width: 70px !important;
-  height: 70px !important;
+  width: 50px !important;
+  height: 50px !important;
   cursor: pointer;
 }
 .feed .feed-post .post-info{

@@ -16,7 +16,6 @@ export default class SearchBarStore{
     if((input.value.length < this.content.length)){
       ascending = false;
     }
-    console.log(ascending);
     this.content = input.value;
     this.checkSuggestions(input, ascending);
   }
@@ -28,7 +27,7 @@ export default class SearchBarStore{
           const profiles = await this.getProfileAddressesAsync();
           if(profiles.length){
             runInAction(()=>{
-              if(typedLength > 3 && ascending){
+              if(typedLength > 2 && ascending){
                 this.content = profiles[0].author;
               }
               this.profiles = [];
@@ -60,7 +59,6 @@ export default class SearchBarStore{
   }
   async getProfileAddressesAsync(){
     const allPaffs = await this.service.fetchAllPaffs();
-    console.log(allPaffs);
     const filteredAuthors = allPaffs.filter(e=>{return e.author.includes(this.content)});
     return filteredAuthors;
   }

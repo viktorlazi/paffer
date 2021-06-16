@@ -6,7 +6,7 @@ function SearchBar({store}) {
       <input 
         type="text"
         value={store.getContent()}
-        onClick={()=>store.onClick()}
+        onClick={(e)=>store.onClick(e.target)}
         placeholder="autocompleting search" 
         onChange={e=>store.setContent(e.target)}/>
       <input 

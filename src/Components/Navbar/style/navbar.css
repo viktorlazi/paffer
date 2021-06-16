@@ -30,6 +30,7 @@ nav .search-bar .suggested-addresses{
   gap:2px;
   overflow: hidden;
   width: 120%;
+  height: 15px;
 }
 nav .search-bar .suggested-addresses a{
   color: blue;

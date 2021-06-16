@@ -85,7 +85,6 @@ export default class BlockchainService{
         }
         for (let i = 0; i < paffCount; i++){
           const newPaff = await methods.paffs(i).call();
-          console.log(newPaff)
           paffs.push(newPaff);
         }
         this.paffs = paffs;

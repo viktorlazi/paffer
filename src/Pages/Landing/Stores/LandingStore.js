@@ -13,7 +13,7 @@ export default class LandingStore{
     }
   }
   getPaffs(){
-    return this.paffs;
+    return this.paffs.slice().reverse();
   }
   fetchPaffs(){
     this.service.fetchAllPaffs()

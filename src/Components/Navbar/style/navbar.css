@@ -27,7 +27,7 @@ nav .search-bar input{
 }
 nav .search-bar .suggested-addresses{
   display:flex;
-  gap:2px;
+  gap:5px;
   overflow: hidden;
   width: 120%;
   height: 15px;

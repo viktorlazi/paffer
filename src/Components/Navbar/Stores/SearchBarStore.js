@@ -12,10 +12,15 @@ export default class SearchBarStore{
     return this.content;
   }
   setContent(input){
+    let ascending = true;
+    if((input.value.length < this.content.length)){
+      ascending = false;
+    }
+    console.log(ascending);
     this.content = input.value;
-    this.checkSuggestions(input);
+    this.checkSuggestions(input, ascending);
   }
-  async checkSuggestions(input){
+  async checkSuggestions(input, ascending){
     const typedLength = this.content.length;
     if(typedLength > 1){
       setTimeout(async()=>{
@@ -23,7 +28,7 @@ export default class SearchBarStore{
           const profiles = await this.getProfileAddressesAsync();
           if(profiles.length){
             runInAction(()=>{
-              if(typedLength > 3){
+              if(typedLength > 3 && ascending){
                 this.content = profiles[0].author;
               }
               this.profiles = [];
@@ -36,10 +41,12 @@ export default class SearchBarStore{
             input.focus();
             input.setSelectionRange(typedLength, this.content.length);
           }else{
-            this.profiles = [];
+            runInAction(()=>{
+              this.profiles = [];
+            });
           }
         }
-      }, 500);
+      }, 100);
     }else{
       this.profiles = [];
     }
@@ -49,7 +56,7 @@ export default class SearchBarStore{
   }
   onClick(input){
     this.content = '0x';
-    this.checkSuggestions(input);
+    this.checkSuggestions(input, true);
   }
   async getProfileAddressesAsync(){
     const allPaffs = await this.service.fetchAllPaffs();

@@ -32,7 +32,7 @@ function SinglePaff({isUserFeed, content, tipAmount, date, author, id}) {
             </a>
             :null
           }
-          <label className="paff-amount" onClick={()=>tipStore.onClick(id)}>{window.web3.utils.fromWei(tipAmount, 'ether')} PAffs</label>
+          <label className="paff-amount" onClick={()=>tipStore.onClick(id)}>{window.web3.utils.fromWei(tipAmount.toString(), 'ether')} PAffs</label>
           <label className="date">on {getDateString(date)}</label>
         </div>
       </div>

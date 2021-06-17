@@ -65,5 +65,4 @@ export default class SearchBarStore{
   submit(){
     window.location.href = ("http://localhost:3000/profile/" + this.content);
   }
-
 }

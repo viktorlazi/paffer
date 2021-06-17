@@ -8,6 +8,7 @@ export default class BlockchainService{
   paffs = [];
   constructor(){
     makeAutoObservable(this);
+    console.log(window)
     if(window.web3 || window.ethereum){
       this.loadWeb3();
       this.getNetworkData();
@@ -49,11 +50,6 @@ export default class BlockchainService{
         const paffer = new window.web3.eth.Contract(Paffer.abi, networkData.address)
         res(paffer.methods);
       });
-      /*
-      setInterval(()=>{
-        const paffer = await new window.web3.eth.Contract(Paffer.abi, await this.getNetworkData().address)
-        res(paffer.methods);
-      }, 1000);*/
     });
   }
   uploadPaff(content, sender){
@@ -69,9 +65,6 @@ export default class BlockchainService{
         });
       });
     });
-  }
-  async fetchPaffById(id){
-    console.log(await this.methods().paffs(id).call());
   }
   fetchAllPaffs(){
     return new Promise((res, rej)=>{

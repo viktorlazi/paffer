@@ -1,3 +1,3 @@
 export default function NoMetamask() {
-  return <p>not logged in, please use metamask</p>
+  return <p>no address connected, please use login to metamask</p>
 }

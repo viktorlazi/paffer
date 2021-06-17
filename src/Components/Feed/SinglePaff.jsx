@@ -1,6 +1,6 @@
 import Identicon from 'react-identicons';
-import TipPaffs from './Stores/TipPaffs';
-const tipStore = new TipPaffs();
+import TipPaffStore from './Stores/TipPaffStore';
+const tipStore = new TipPaffStore();
 
 function SinglePaff({isUserFeed, content, tipAmount, date, author, id}) {  
   const getDateString = (timestamp) =>{

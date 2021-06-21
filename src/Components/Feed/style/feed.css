@@ -33,6 +33,7 @@
 .feed .feed-post .post-info{
   display:flex;
   justify-content:left;
+  align-items: center;
   gap:15px;
 }
 .feed .feed-post .post-info .paff-amount{
@@ -42,6 +43,12 @@
 }
 .feed .feed-post .post-info label{
   font-weight: 100;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+.feed .feed-post .post-info label svg{
+  color: green;
 }
 .feed .feed-post div p{
   font-size: 26px;

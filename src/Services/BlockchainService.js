@@ -76,7 +76,7 @@ export default class BlockchainService{
         if(!paffCount){
           rej([]);
         }
-        for (let i = 0; i < paffCount; i++){
+        for (let i = 1; i <= paffCount; i++){
           const newPaff = await methods.paffs(i).call();
           paffs.push(newPaff);
         }
@@ -93,20 +93,7 @@ export default class BlockchainService{
     return this.paffs.filter(e=>e.author===author);
   }
   tipPaffOwner = async (id) =>{
-    const methods = await this.getMethods();
-    console.log(methods)
+    const methods = await this.getMethods();    
     methods.tipPaffOwner(id).send({from:this.userAddress, value: window.web3.utils.toWei('1', 'Ether')});
   }
-  /*
-  function tipPaffOwner(uint _id) public payable{
-    require(_id > 0 && _id <= paffCount);
-
-    Paff memory _paff = paffs[_id];
-    address payable _author = _paff.author;
-    _author.transfer(msg.value);
-    _paff.tipAmount = _paff.tipAmount + msg.value;    
-    paffs[_id] = _paff;
-    
-    emit PaffTipped(_id, _paff.content, _paff.tipAmount, _author);
-  }*/
 }

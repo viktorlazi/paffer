@@ -1,5 +1,6 @@
 import Identicon from 'react-identicons';
 import TipPaffStore from './Stores/TipPaffStore';
+import PlusOneIcon from '@material-ui/icons/PlusOne';
 const tipStore = new TipPaffStore();
 
 function SinglePaff({isUserFeed, content, tipAmount, date, author, id}) {  
@@ -32,7 +33,13 @@ function SinglePaff({isUserFeed, content, tipAmount, date, author, id}) {
             </a>
             :null
           }
-          <label className="paff-amount" onClick={()=>tipStore.onClick(id)}>{window.web3.utils.fromWei(tipAmount.toString(), 'ether')} PAffs</label>
+          <label className="paff-amount">
+            {window.web3.utils.fromWei(tipAmount.toString(), 'ether')} PAffs
+            {
+              author !== tipStore.userAddress?
+              <PlusOneIcon onClick={()=>{tipStore.onClick(id)}}/>:null
+            }
+          </label>
           <label className="date">on {getDateString(date)}</label>
         </div>
       </div>

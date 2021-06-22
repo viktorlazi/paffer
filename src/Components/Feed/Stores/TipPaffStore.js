@@ -8,6 +8,9 @@ export default class TipPaffStore{
     makeAutoObservable(this);
     this.userAddress = this.service.userAddress;
   }
+  toggleStatus = () =>{
+    this.status += 1;
+  }
   onClick = (id) =>{
     this.service.tipPaffOwner(id);
   }

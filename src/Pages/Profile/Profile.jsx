@@ -18,9 +18,9 @@ function Profile() {
       <Navbar userAddress={profileStore.service.userAddress} />
       {
         profileStore.service.userAddress===address?
-        <PublishPaff store={profileStore.publishPaffStore}/>
-        :<ProfileInfo address={address} />
+        <PublishPaff store={profileStore.publishPaffStore}/>:null
       }
+      <ProfileInfo address={address} />
       <Feed isUserFeed={true}>
         {[
           ...profileStore.getPaffs()

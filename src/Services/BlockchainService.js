@@ -8,7 +8,6 @@ export default class BlockchainService{
   paffs = [];
   constructor(){
     makeAutoObservable(this);
-    console.log(window)
     if(window.web3 || window.ethereum){
       this.loadWeb3();
       this.getNetworkData();
@@ -47,8 +46,10 @@ export default class BlockchainService{
       }
       this.getNetworkData()
       .then((networkData)=>{
-        const paffer = new window.web3.eth.Contract(Paffer.abi, networkData.address)
-        res(paffer.methods);
+        if(networkData){
+          const paffer = new window.web3.eth.Contract(Paffer.abi, networkData.address)
+          res(paffer.methods);
+        }
       });
     });
   }

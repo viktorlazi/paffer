@@ -1,9 +1,9 @@
 import Identicon from 'react-identicons';
-import TipPaffStore from './Stores/TipPaffStore';
 import PlusOneIcon from '@material-ui/icons/PlusOne';
-const tipStore = new TipPaffStore();
+import {observer} from 'mobx-react';
+import {action} from 'mobx';
 
-function SinglePaff({isUserFeed, content, tipAmount, date, author, id}) {  
+function SinglePaff({isUserFeed, content, tipAmount, date, author, id, tipStore}) {  
   const getDateString = (timestamp) =>{
     const date = new Date(parseInt(timestamp*1000)); // ili timestamp*1000?
     const day = date.getDate();
@@ -34,10 +34,10 @@ function SinglePaff({isUserFeed, content, tipAmount, date, author, id}) {
             :null
           }
           <label className="paff-amount">
-            {window.web3.utils.fromWei(tipAmount.toString(), 'ether')} PAffs
+            {parseInt(window.web3.utils.fromWei(tipAmount.toString(), 'ether')) } PAffs
             {
               author !== tipStore.userAddress?
-              <PlusOneIcon onClick={()=>{tipStore.onClick(id)}}/>:null
+              <PlusOneIcon onClick={action(()=>{tipStore.onClick(id)})}/>:null
             }
           </label>
           <label className="date">on {getDateString(date)}</label>
@@ -46,4 +46,4 @@ function SinglePaff({isUserFeed, content, tipAmount, date, author, id}) {
     </div>
   )
 }
-export default SinglePaff;
+export default observer(SinglePaff);

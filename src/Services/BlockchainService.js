@@ -95,6 +95,6 @@ export default class BlockchainService{
   }
   tipPaffOwner = async (id) =>{
     const methods = await this.getMethods();    
-    methods.tipPaffOwner(id).send({from:this.userAddress, value: window.web3.utils.toWei('1', 'Ether')});
+    methods.tipPaffOwner(id).send({from:this.userAddress, value: window.web3.utils.toWei('0.01', 'Ether')});
   }
 }

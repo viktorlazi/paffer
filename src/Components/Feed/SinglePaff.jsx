@@ -34,7 +34,7 @@ function SinglePaff({isUserFeed, content, tipAmount, date, author, id, tipStore}
             :null
           }
           <label className="paff-amount">
-            {parseInt(window.web3.utils.fromWei(tipAmount.toString(), 'ether')) } PAffs
+            {parseInt(window.web3.utils.fromWei((tipAmount*100).toString(), 'ether')) } PAffs
             {
               author !== tipStore.userAddress?
               <PlusOneIcon onClick={action(()=>{tipStore.onClick(id)})}/>:null

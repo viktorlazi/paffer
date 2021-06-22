@@ -12,7 +12,7 @@ function Navbar({userAddress}) {
         <h1>Paffer</h1>
       </a>
       {
-        userAddress?
+        userAddress && window.ethereum.networkVersion == 3?
         <LoggedIn userAddress={userAddress} />
         :<NoMetamask />        
       }

@@ -13,7 +13,7 @@ function Feed(props) {
           return <SinglePaff isUserFeed={props.isUserFeed} content={e.content} date={e.date} tipAmount={e.tipAmount} author={e.author} id={e.id} tipStore={tipStore} />
         })
         :
-        <p>no paffs to display</p>
+        <p>loading paffs or can't find any</p>
       }
     </div>
 }

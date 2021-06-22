@@ -4600,6 +4600,81 @@
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {
+        "0x31bcacaec0d67619bfe28b3fc2fe768a5aba5aacb7e02cf433535dc70705ceed": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "content",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tipAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "date",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address payable",
+              "name": "author",
+              "type": "address"
+            }
+          ],
+          "name": "PaffCreated",
+          "type": "event"
+        },
+        "0x49170683e06736dc5ba3a1b0a4b0880ce122306d88295dd516d0551d2551883d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "content",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tipAmount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address payable",
+              "name": "author",
+              "type": "address"
+            }
+          ],
+          "name": "PaffTipped",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x696322D42B35b243f03cD434fBdb531AD3f6a28c",
+      "transactionHash": "0x5a361ac94e45eacd959d6942e2e1bd8cccf553674ea796aae488bfd9dfd32810"
+    },
     "5777": {
       "events": {
         "0x31bcacaec0d67619bfe28b3fc2fe768a5aba5aacb7e02cf433535dc70705ceed": {
@@ -4677,7 +4752,7 @@
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-06-21T09:41:41.055Z",
+  "updatedAt": "2021-06-22T10:07:48.846Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

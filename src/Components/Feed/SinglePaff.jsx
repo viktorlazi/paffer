@@ -17,7 +17,7 @@ function SinglePaff({isUserFeed, content, tipAmount, date, author, id, tipStore}
       {
         !isUserFeed?
         <div className="icon">
-          <a href={"http://localhost:3000/profile/" + author}>
+          <a href={window.location.origin + '/apps/paffer/#' + '/profile/'  + author}>
             <Identicon string={author} />
           </a>
         </div>
@@ -28,7 +28,7 @@ function SinglePaff({isUserFeed, content, tipAmount, date, author, id, tipStore}
         <div className="post-info">
           {
             !isUserFeed?
-            <a href={"http://localhost:3000/profile/" + author}>
+            <a href={window.location.origin + '/apps/paffer/#' + '/profile/' + author}>
               <label className="autor-name">{author.slice(0,8)}</label>
             </a>
             :null

@@ -8,7 +8,7 @@ import SearchBarStore from './Stores/SearchBarStore';
 function Navbar({userAddress}) {
   return (
     <nav>
-      <a href="http://localhost:3000">
+      <a href={window.location.origin + '/apps/paffer/#'}>
         <h1>Paffer</h1>
       </a>
       {

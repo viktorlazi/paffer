@@ -16,7 +16,7 @@ function SearchBar({store}) {
       <div className="suggested-addresses">
         {[
           ...store.getProfiles().map(e=>{
-            return <a href={"http://localhost:3000/profile/"+e}>
+            return <a href={window.location.origin + '/apps/paffer/#' + "/profile/" + e}>
               {e.slice(0,5)}
             </a>
           }).slice(0,4)

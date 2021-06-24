@@ -63,6 +63,6 @@ export default class SearchBarStore{
     return filteredAuthors;
   }
   submit(){
-    window.location.href = ("http://localhost:3000/profile/" + this.content);
+    window.location.href = (window.location.origin + '/apps/paffer/#' + "/profile/" + this.content);
   }
 }
